@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw2gprtkqv1c"]
+
+[ext_resource type="Script" uid="uid://cycayvhaqqsyn" path="res://scripts/hud.gd" id="1_o8u2p"]
+[ext_resource type="FontFile" uid="uid://chmv6t3xx7bc0" path="res://Textures/ARCADECLASSIC.TTF" id="2_pvgpj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nhyt6"]
+font = ExtResource("2_pvgpj")
+font_size = 48
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_o8u2p")
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 29.0
+offset_right = 285.0
+offset_bottom = 94.0
+text = "SCORE: 9999"
+label_settings = SubResource("LabelSettings_nhyt6")
+
+[node name="lives" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 95.0
+offset_right = 81.0
+offset_bottom = 135.0

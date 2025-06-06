@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpb1wenb0wfwn"]
+
+[ext_resource type="Script" uid="uid://ygk0yvxwh6v6" path="res://scripts/astroid.gd" id="1_4q571"]
+[ext_resource type="Texture2D" uid="uid://drbce7ipqrfgx" path="res://Textures/BigAstroid.png" id="2_gqt6d"]
+[ext_resource type="Shape2D" uid="uid://cyhu2nvnw25g4" path="res://scene/resources/astroid_cs_large.tres" id="3_gqt6d"]
+
+[node name="Astroid" type="Area2D"]
+light_mask = 5
+visibility_layer = 11
+script = ExtResource("1_4q571")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gqt6d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = ExtResource("3_gqt6d")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

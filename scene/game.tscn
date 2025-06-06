@@ -1,0 +1,138 @@
+[gd_scene load_steps=14 format=3 uid="uid://wg4me7md0n4i"]
+
+[ext_resource type="Script" uid="uid://tnik14ckdbqk" path="res://scripts/game.gd" id="1_dbls1"]
+[ext_resource type="PackedScene" uid="uid://b3tcsdn8rimqc" path="res://scene/player.tscn" id="1_olp1c"]
+[ext_resource type="PackedScene" uid="uid://bw2gprtkqv1c" path="res://scene/hud.tscn" id="2_xwcet"]
+[ext_resource type="PackedScene" uid="uid://cpb1wenb0wfwn" path="res://scene/astroid.tscn" id="3_33cqm"]
+[ext_resource type="PackedScene" uid="uid://dusfes50qrewp" path="res://scene/game_over_screen.tscn" id="3_p1ry8"]
+[ext_resource type="PackedScene" uid="uid://h4dlmk4rag2u" path="res://scene/player_spawn_area.tscn" id="6_xlg7c"]
+[ext_resource type="Script" uid="uid://6hufe3cuh6f3" path="res://scripts/player_spawn_area.gd" id="7_qpk70"]
+[ext_resource type="AudioStream" uid="uid://hkltosq088x4" path="res://Textures/laser-shot-ingame-230500.mp3" id="8_ll5lq"]
+[ext_resource type="AudioStream" uid="uid://cj03xsvhnncyy" path="res://Textures/hit-soundvideo-game-type-230510.mp3" id="9_17rxn"]
+[ext_resource type="AudioStream" uid="uid://bp0a8726s5gkk" path="res://Textures/explode-106334.mp3" id="10_yq8tf"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yq8tf"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 360, 1)
+spread = 0.0
+initial_velocity_min = -10.0
+initial_velocity_max = -10.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ym5sv"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 360, 1)
+spread = 0.0
+initial_velocity_min = -20.0
+initial_velocity_max = -20.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 3.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sng2h"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 360, 1)
+spread = 0.0
+initial_velocity_min = -30.0
+initial_velocity_max = -30.0
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 5.0
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_dbls1")
+
+[node name="BackgroundStarFields" type="Node2D" parent="."]
+
+[node name="StarFieldBack" type="GPUParticles2D" parent="BackgroundStarFields"]
+z_index = -100
+position = Vector2(1318, 360)
+amount = 1000
+lifetime = 140.0
+preprocess = 280.0
+process_material = SubResource("ParticleProcessMaterial_yq8tf")
+
+[node name="StarFieldMiddle" type="GPUParticles2D" parent="BackgroundStarFields"]
+z_index = -95
+position = Vector2(1318, 360)
+amount = 250
+lifetime = 140.0
+preprocess = 280.0
+process_material = SubResource("ParticleProcessMaterial_ym5sv")
+
+[node name="StarFieldFront" type="GPUParticles2D" parent="BackgroundStarFields"]
+z_index = -90
+position = Vector2(1318, 360)
+amount = 30
+lifetime = 140.0
+preprocess = 280.0
+process_material = SubResource("ParticleProcessMaterial_sng2h")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UI" instance=ExtResource("2_xwcet")]
+
+[node name="GameOverScreen" parent="UI" instance=ExtResource("3_p1ry8")]
+visible = false
+
+[node name="Player" parent="." instance=ExtResource("1_olp1c")]
+position = Vector2(640, 360)
+
+[node name="Lasers" type="Node" parent="."]
+
+[node name="Astroids" type="Node" parent="."]
+
+[node name="Astroid" parent="Astroids" instance=ExtResource("3_33cqm")]
+position = Vector2(319, 400)
+scale = Vector2(2, 2)
+
+[node name="Astroid2" parent="Astroids" instance=ExtResource("3_33cqm")]
+position = Vector2(1026, 151)
+scale = Vector2(2, 2)
+
+[node name="Astroid3" parent="Astroids" instance=ExtResource("3_33cqm")]
+position = Vector2(1119, 543)
+scale = Vector2(2, 2)
+
+[node name="Astroid4" parent="Astroids" instance=ExtResource("3_33cqm")]
+position = Vector2(581, 625)
+scale = Vector2(2, 2)
+
+[node name="Astroid5" parent="Astroids" instance=ExtResource("3_33cqm")]
+position = Vector2(244, 215)
+scale = Vector2(2, 2)
+
+[node name="Astroid6" parent="Astroids" instance=ExtResource("3_33cqm")]
+position = Vector2(117, 587)
+scale = Vector2(2, 2)
+
+[node name="Astroid9" parent="Astroids" instance=ExtResource("3_33cqm")]
+position = Vector2(853, 537)
+scale = Vector2(2, 2)
+
+[node name="Astroid7" parent="Astroids" instance=ExtResource("3_33cqm")]
+position = Vector2(503, 149)
+scale = Vector2(2, 2)
+
+[node name="Astroid8" parent="Astroids" instance=ExtResource("3_33cqm")]
+position = Vector2(503, 149)
+rotation = -0.523598
+scale = Vector2(2, 2)
+
+[node name="PlayerSpawnpos" type="Node2D" parent="."]
+position = Vector2(640, 360)
+
+[node name="PlayerSpawnArea" parent="PlayerSpawnpos" instance=ExtResource("6_xlg7c")]
+script = ExtResource("7_qpk70")
+
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ll5lq")
+
+[node name="AstroidHitsound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_17rxn")
+
+[node name="PlayerDieSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_yq8tf")

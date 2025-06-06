@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3tcsdn8rimqc"]
+
+[ext_resource type="Texture2D" uid="uid://canu511xwksky" path="res://Textures/0000011_slice_3.png" id="1_fsgou"]
+[ext_resource type="Script" uid="uid://dfvll3kxufi1x" path="res://scripts/player.gd" id="1_rb51k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fsgou"]
+radius = 17.0294
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 5
+script = ExtResource("1_rb51k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fsgou")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_fsgou")
+
+[node name="Muzzle" type="Node2D" parent="."]
+position = Vector2(0, -33)
